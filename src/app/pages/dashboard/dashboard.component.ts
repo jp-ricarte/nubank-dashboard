@@ -3,10 +3,7 @@ import Chart from 'chart.js';
 
 // core components
 import {
-  chartOptions,
-  parseOptions,
-  chartExample1,
-  chartExample2
+  chartDashboard
 } from "../../variables/charts";
 import { DashboardService } from './dashboard.service';
 
@@ -31,38 +28,33 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.dashboard();
-    this.datasets = [
-      [0, 20, 10, 30, 15, 40, 20, 60, 60],
-      [0, 20, 5, 25, 10, 30, 15, 40, 40]
-    ];
-    this.data = this.datasets[0];
-
-
-    var chartOrders = document.getElementById('chart-orders');
-
-    parseOptions(Chart, chartOptions());
-
-
-    var ordersChart = new Chart(chartOrders, {
-      type: 'bar',
-      options: chartExample2.options,
-      data: chartExample2.data
-    });
-
-    var chartSales = document.getElementById('chart-sales');
-
-    this.salesChart = new Chart(chartSales, {
-			type: 'line',
-			options: chartExample1.options,
-			data: chartExample1.data
-		});
+    let result = this.service.dashboard();
+    this.createChart(result.gastosMensais);
   }
 
 
-  public updateOptions() {
-    this.salesChart.data.datasets[0].data = this.data;
-    this.salesChart.update();
-  }
+  public createChart(dados) {
+        let ordersTimer = setTimeout(() => {
+            let chartOrders: any = document.getElementById('chart-orders');
+            if (chartOrders) {
+                clearInterval(ordersTimer);
+                new Chart(chartOrders, {
+                    type: 'bar',
+                    data: {
+                        labels: dados.map((d) => d.mes),
+                        datasets: [
+                            {
+                                data: dados.map((d) => d.totalMes),
+                                backgroundColor: '#530082',
+                                label: 'Valor Total',
+                                borderRadius: 50
+                            }
+                        ]
+                    },
+                    options: chartDashboard.options,
+                });
+            }
+        }, 500);
+    }
 
 }

@@ -47,7 +47,7 @@ export class DashboardService {
 
         return {
             data: data,
-            gastosMensais: gastosMensais,
+            gastosMensais: gastosMensaisOrdemCrescente,
             cards: {
                 totalGastos: total,
             }
