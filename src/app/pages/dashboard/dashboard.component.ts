@@ -47,7 +47,6 @@ export class DashboardComponent implements OnInit {
                                 data: dados.map((d) => d.totalMes),
                                 backgroundColor: '#530082',
                                 label: 'Valor Total',
-                                borderRadius: 50
                             }
                         ]
                     },
