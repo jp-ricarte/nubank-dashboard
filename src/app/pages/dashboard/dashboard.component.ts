@@ -8,11 +8,13 @@ import {
   chartExample1,
   chartExample2
 } from "../../variables/charts";
+import { DashboardService } from './dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  providers: [DashboardService]
 })
 export class DashboardComponent implements OnInit {
 
@@ -22,8 +24,14 @@ export class DashboardComponent implements OnInit {
   public clicked: boolean = true;
   public clicked1: boolean = false;
 
-  ngOnInit() {
+  constructor(
+    public service: DashboardService
+  ) {
+    
+  }
 
+  ngOnInit() {
+    this.service.dashboard();
     this.datasets = [
       [0, 20, 10, 30, 15, 40, 20, 60, 60],
       [0, 20, 5, 25, 10, 30, 15, 40, 40]
