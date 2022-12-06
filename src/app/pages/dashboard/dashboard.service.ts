@@ -14,6 +14,13 @@ export class DashboardService {
         let gastosMensais = [];
         for (let item of data) {
             item.value = item.detail.split("R$")[1];
+            if (item.title == "Pagamento da fatura") {
+                item.detail = item.title + " " + item.value;
+            } 
+            else {
+                item.detail = item.detail.split("R$")[0];
+            }
+
             if (item.value.includes(".")) {
                 item.value = +item.value.replace(".", "").replace(",",".");
             } 

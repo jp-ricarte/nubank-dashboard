@@ -39,7 +39,7 @@ export class DashboardComponent implements OnInit {
             if (chartOrders) {
                 clearInterval(ordersTimer);
                 this.chart = new Chart(chartOrders, {
-                    type: 'bar',
+                    type: 'line',
                     data: {
                         labels: dados.map((d) => d.mes),
                         datasets: [
