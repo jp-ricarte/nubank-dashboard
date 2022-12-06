@@ -8,7 +8,7 @@ export class DashboardService {
     }
 
     public dashboard() {
-        let data = mock.data.filter((item) => item.title == "Compra no débito" || (item.title == "Transferência enviada" && !item.detail.toLowerCase().includes("joao pedro ricarte gomes")));
+        let data = mock.data.filter((item) => item.title == "Compra no débito" || item.title == "Pagamento da fatura" || (item.title == "Transferência enviada" && !item.detail.toLowerCase().includes("joao pedro ricarte gomes")));
         let total = 0;
         let totalMes = 0;
         let gastosMensais = [];
