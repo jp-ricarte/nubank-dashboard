@@ -11,7 +11,6 @@ export class DashboardService {
         let data = mock.data.filter((item) => item.title == "Compra no débito" || (item.title == "Transferência enviada" && !item.detail.toLowerCase().includes("joao pedro ricarte gomes")));
         let total = 0;
         let totalMes = 0;
-        let mes = '';
         let gastosMensais = [];
         for (let item of data) {
             item.value = item.detail.split("R$")[1];

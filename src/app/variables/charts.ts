@@ -129,7 +129,7 @@ export const chartDashboard = {
   options: {
     tooltips: {
         callbacks: {
-            label: function(tooltipItem, data) {
+            label: (tooltipItem, data) => {
                 let valueFormat = new Intl.NumberFormat('pt-BR',  { style: 'currency', currency: 'BRL' }).format(tooltipItem.yLabel);
                 return valueFormat;
             }
@@ -140,7 +140,7 @@ export const chartDashboard = {
       yAxes: [{
         ticks: {
             beginAtZero: true,
-            callback: function(value) {
+            callback: (value) => {
                 let valueFormat = new Intl.NumberFormat('pt-BR',  { style: 'currency', currency: 'BRL' }).format(value);
                 return valueFormat;
             }

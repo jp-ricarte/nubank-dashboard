@@ -93,21 +93,64 @@
 </div>
 <div class="container-fluid mt--7">
   <div class="row">
-      <div class="col-xl-12 p-0 mb-3 mb-xl-0">
-          <div class="card shadow">
-              <div class="card-header bg-transparent">
-                  <div class="row align-items-center">
-                      <div class="col">
-                          <h2 class="mb-0">Despesas com Nubank</h2>
-                      </div>
-                  </div>
-              </div>
-              <div class="card-body pt-0">
-                  <div class="chart">
-                      <canvas id="chart-orders" height="320" class="chart-canvas"></canvas>
-                  </div>
-              </div>
+    <div class="col-xl-12 p-0 mb-3 mb-xl-0">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <div class="row align-items-center">
+            <div class="col">
+              <h2 class="mb-0">Despesas com Nubank</h2>
+            </div>
           </div>
+        </div>
+        <div class="card-body pt-0">
+          <div class="chart">
+            <canvas id="chart-orders" height="320" class="chart-canvas"></canvas>
+          </div>
+        </div>
       </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="extratoMes" class="container-fluid mt-2">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0">Card tables</h3>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Despesa</th>
+                <th scope="col">Tipo da despesa</th>
+                <th scope="col">Data</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of extratoMes">
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">{{item.detail}}</span>
+                    </div>
+                  </div>
+                </th>
+                <td>
+                  <span class="badge badge-dot mr-4">
+                    <i class="bg-warning"></i> {{item.title}}
+                  </span>
+                </td>
+                <td>
+                  {{item.postDate | date: 'dd/MM/YYYY'}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
