@@ -12,6 +12,7 @@ export class DashboardService {
         let total = 0;
         let totalMes = 0;
         let gastosMensais = [];
+        
         for (let item of data) {
             item.value = item.detail.split("R$")[1];
             if (item.title == "Pagamento da fatura") {
@@ -55,6 +56,7 @@ export class DashboardService {
             gastosMensais: gastosMensaisOrdemCrescente,
             cards: {
                 totalGastos: total,
+                mediaGastos: (total - gastosMensais[gastosMensais.length-1].totalMes - gastosMensais[0].totalMes ) / (gastosMensais.length - 2),
             }
         }
         

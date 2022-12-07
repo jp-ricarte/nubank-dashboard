@@ -30,11 +30,13 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log('iniciou');
         this.dados = this.service.dashboard()
         this.createChart(this.dados.gastosMensais);
+        this.gastosMensal(moment().format('MM/YYYY'));
     }
 
-    public createChart(dados) {
+    public async createChart(dados) {
         let ordersTimer = setTimeout(() => {
             let chartOrders: any = document.getElementById('chart-orders');
             if (chartOrders) {
@@ -55,9 +57,9 @@ export class DashboardComponent implements OnInit {
                 });
             }
             document.getElementById("chart-orders").onclick = (evt) => {
-                var activePoint = this.chart.getElementAtEvent(evt);
-                var firstPoint = activePoint[0];
-                var mes = this.chart.data.labels[firstPoint._index];
+                let activePoint = this.chart.getElementAtEvent(evt);
+                let firstPoint = activePoint[0];
+                let mes = this.chart.data.labels[firstPoint._index];
                 this.gastosMensal(mes);
             };
         }, 500);
@@ -67,7 +69,6 @@ export class DashboardComponent implements OnInit {
     public gastosMensal(mes:string) {
         this.extratoMes = this.dados.data.filter((i) => moment(i.postDate).format('MM/YYYY') == mes);
         this.mesSelecionado = mes;
-        console.log(this.extratoMes, mes);
     }
 
 }
