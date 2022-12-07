@@ -48,7 +48,6 @@ export class DashboardService {
         let gastosMensaisOrdemCrescente = [];
         for (let i = gastosMensais.length-1; i >= 0; i--) {
             gastosMensaisOrdemCrescente.push(gastosMensais[i]);
-            
         }
 
         return {

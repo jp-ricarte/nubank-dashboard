@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit {
     public chart;
     public dados;
     public extratoMes;
+    public mesSelecionado;
 
     constructor(
         public service: DashboardService
@@ -39,7 +40,7 @@ export class DashboardComponent implements OnInit {
             if (chartOrders) {
                 clearInterval(ordersTimer);
                 this.chart = new Chart(chartOrders, {
-                    type: 'line',
+                    type: 'bar',
                     data: {
                         labels: dados.map((d) => d.mes),
                         datasets: [
@@ -65,6 +66,7 @@ export class DashboardComponent implements OnInit {
 
     public gastosMensal(mes:string) {
         this.extratoMes = this.dados.data.filter((i) => moment(i.postDate).format('MM/YYYY') == mes);
+        this.mesSelecionado = mes;
         console.log(this.extratoMes, mes);
     }
 
