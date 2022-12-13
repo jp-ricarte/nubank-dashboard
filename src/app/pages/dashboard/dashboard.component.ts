@@ -30,10 +30,12 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('iniciou');
-        this.dados = this.service.dashboard()
-        this.createChart(this.dados.gastosMensais);
-        this.gastosMensal(moment().format('MM/YYYY'));
+        this.service.dashboard().subscribe((response) => {
+            this.dados = response;
+            this.createChart(this.dados.gastosMensais);
+            this.gastosMensal(moment().format('MM/YYYY'));
+            console.log('iniciou', this.dados);
+        });
     }
 
     public async createChart(dados) {
@@ -67,7 +69,7 @@ export class DashboardComponent implements OnInit {
     }
 
     public gastosMensal(mes:string) {
-        this.extratoMes = this.dados.data.filter((i) => moment(i.postDate).format('MM/YYYY') == mes);
+        this.extratoMes = this.dados.data.filter((i) => moment(i.postDate).format('MM/YYYY') == mes).reverse();
         this.mesSelecionado = mes;
     }
 
