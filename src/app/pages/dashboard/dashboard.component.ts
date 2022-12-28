@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js';
 import * as moment from 'moment';
-
+import 'moment/locale/pt-br'  // without this line it didn't work
+moment.locale('pt-br');
 // core components
 import {
     chartDashboard
@@ -22,6 +23,8 @@ export class DashboardComponent implements OnInit {
     public dados;
     public extratoMes;
     public mesSelecionado;
+    public maisRecentesButtonColor = 'btn-primary';
+    public maioresValoresButtonColor = 'btn-secondary';
 
     constructor(
         public service: DashboardService
@@ -63,6 +66,9 @@ export class DashboardComponent implements OnInit {
                 let firstPoint = activePoint[0];
                 let mes = this.chart.data.labels[firstPoint._index];
                 this.gastosMensal(mes);
+                if (this.maioresValoresButtonColor == 'btn-primary') {
+                    this.maioresValores();
+                }
             };
         }, 500);
 
@@ -70,7 +76,40 @@ export class DashboardComponent implements OnInit {
 
     public gastosMensal(mes:string) {
         this.extratoMes = this.dados.data.filter((i) => moment(i.postDate).format('MM/YYYY') == mes).reverse();
-        this.mesSelecionado = mes;
+        this.mesSelecionado = moment(mes.split('/')[0]).format('MMMM') + '/' + mes.split('/')[1];
+    }
+
+    public maioresValores() {
+        this.extratoMes.sort((a, b) => b.value - a.value);
+        this.maisRecentesButtonColor = 'btn-secondary';
+        this.maioresValoresButtonColor = 'btn-primary';
+    }
+    
+    public maisRecentes() {
+        this.extratoMes.sort((a, b) => +new Date(b.postDate) - +new Date(a.postDate));
+        this.maisRecentesButtonColor = 'btn-primary';
+        this.maioresValoresButtonColor = 'btn-secondary';
+    }
+
+    public variacaoCor(numero) {
+        if (numero > 0) {
+            return {
+               cor: 'text-danger',
+               setinha: 'fa fa-arrow-up'
+            }
+        } 
+        else if (numero < 0) {
+            return {
+                cor: 'text-success',
+                setinha: 'fa fa-arrow-down'
+             }
+        }
+        else {
+            return {
+                cor: '',
+                setinha: 'fa fa-equals'
+             }
+        }
     }
 
 }
