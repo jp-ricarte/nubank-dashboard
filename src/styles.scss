@@ -1,12 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
-.btn-primary
-{
+.light {
+    --background-color: #fff;
+    --background-color-2: #f0f2f9;
+    --text-color: #32325d;
+    --primary-color: #530082;
+}
+.dark {
+    --background-color: #181a1b;
+    --background-color-2: #1d2023;
+    --text-color: #fff;
+    --primary-color: #530082;
+}
+
+.card {
+    background-color: var(--background-color);
+}
+
+.btn-primary {
     border-color: #530082 !important;
     background-color: #530082 !important;
 }
 
-.btn-secondary
-{
+.btn-secondary {
     color: #530082 !important;
 
+}
+
+.card, .card-header {
+    background-color: var(--background-color) !important;
+    color: var(--text-color) !important;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .table, .navbar-light .navbar-nav .nav-link{
+    color: var(--text-color) !important;
+}
+
+
+body, .table .thead-light th {
+    background-color: var(--background-color-2) !important;
+    color: var(--text-color) !important;
+    border-color: var(--background-color-2) !important;
+    border-top:  var(--background-color-2) !important;
+}
+
+.footer {
+    background-color: var(--background-color-2) !important;
+}
+
+.bg {
+    background-color: var(--background-color) !important;
 }
