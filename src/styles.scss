@@ -50,3 +50,16 @@ body, .table .thead-light th {
 .bg {
     background-color: var(--background-color) !important;
 }
+
+.custom-toggle input:checked + .custom-toggle-slider:before {
+    background: #fff !important;
+}
+.custom-toggle input:checked + .custom-toggle-slider {
+    background-color: var(--primary-color) !important;
+    border-color: #fff !important;
+
+}
+
+.custom-toggle-slider {
+    background: #c2c2c2 !important;
+}
