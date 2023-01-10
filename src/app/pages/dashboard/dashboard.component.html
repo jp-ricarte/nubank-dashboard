@@ -130,6 +130,7 @@
                 <th>Valor</th>
                 <th>Tipo da despesa</th>
                 <th>Data</th>
+                <th>Ações</th>
                 <th></th>
               </tr>
             </thead>
@@ -156,6 +157,9 @@
                 </td>
                 <td>
                   {{item.postDate | date: 'dd/MM/YYYY'}}
+                </td>
+                <td>
+                  <button class="btn btn-sm btn-danger" (click)="deletePopUp(item.extrato_id)"><i class="fa fa-trash"></i></button>
                 </td>
               </tr>
             </tbody>

@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
     public focus;
-    public theme = false || JSON.parse(localStorage.getItem('theme'));
+    public isDark = false || JSON.parse(localStorage.getItem('isDark'));
     public listTitles: any[];
     public location: Location;
 
@@ -26,13 +26,13 @@ export class NavbarComponent implements OnInit {
 
     setTheme() {
         let body = document.getElementById("body");
-        if (this.theme) {
+        if (this.isDark) {
             body.className = "dark";
-            localStorage.setItem('theme', 'true');
+            localStorage.setItem('isDark', 'true');
         }
         else {
             body.className = "light";
-            localStorage.setItem('theme', 'false');
+            localStorage.setItem('isDark', 'false');
         }
     }
 

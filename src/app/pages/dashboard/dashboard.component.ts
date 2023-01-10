@@ -33,11 +33,30 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.getInfo();
+    }
+
+    public getInfo() {
         this.service.dashboard().subscribe((response) => {
             this.dados = response;
             this.createChart(this.dados.gastosMensais);
             this.gastosMensal(moment().format('MM/YYYY'));
             console.log('iniciou', this.dados);
+        });
+    }
+
+    
+    public deletePopUp(id) {
+        this.service.deleteAlert().then((result) => {
+            if (result.isConfirmed) {
+                this.deleteExtrato(id);
+            }    
+        });
+    }
+    
+    public deleteExtrato(id) {
+        this.service.deleteExtrato(id).subscribe((response) => {
+            this.getInfo();
         });
     }
 
